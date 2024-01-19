@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'MediCare\css\styles.css'%}">
+    <title>Prescription List</title>
+</head>
+<body>
+    <h1>Prescription List</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Prescription ID</th>
+                <th>Medication</th>
+                <th>Dose</th>
+                <th>Serial Number</th>
+                <th>Treatment Plan ID</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for prescription in prescriptions %}
+                <tr>
+                    <td>{{ prescription.Prescription_ID }}</td>
+                    <td>{{ prescription.Medication }}</td>
+                    <td>{{ prescription.Dose }}</td>
+                    <td>{{ prescription.Serial_Number }}</td>
+                    <td>{{ prescription.Treatment_Plan.Plan_ID }}</td>
+                    <td>
+                        <a href="{% url 'update_prescription' prescription.Prescription_ID %}" class="update-button">Update</a>
+                        <a href="{% url 'delete_prescription' prescription.Prescription_ID %}" class="delete-button">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'add_prescription' %}" class="add-button">Add Prescription</a>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var updateButtons = document.getElementsByClassName("update-button");
+            for (var i = 0; updateButtons.length; i++) {
+                updateButtons[i].addEventListener("click", function(event) {
+                    event.preventDefault();
+                    window.location.href = this.getAttribute("href");
+                });
+            }
+        });
+    </script>
+</body>
+</html>

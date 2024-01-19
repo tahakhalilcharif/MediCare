@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Medical Record for {{ patient.full_name }}{% endblock %}
+
+{% block content %}
+    <h1>Medical Record for {{ patient.full_name }}</h1>
+
+    {% if medical_records %}
+        <ul>
+            {% for record in medical_records %}
+                <li>
+                    <strong>Visit Date:</strong> {{ record.visits.Consultation_Date }}
+                    <br>
+                    <strong>Doctor:</strong> {{ record.visits.Doctor.full_name }}
+                    <br>
+                    <strong>Treatment Plan:</strong> {{ record.treatment_plans.Diagnosis }}
+                    <br>
+                    <strong>Prescription:</strong> {{ record.treatment_plans.prescription.Medication }} - {{ record.treatment_plans.prescription.Dose }}
+                    <br><br>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No medical records found for this patient.</p>
+    {% endif %}
+{% endblock %}

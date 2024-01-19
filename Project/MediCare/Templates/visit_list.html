@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'MediCare\css\styles.css'%}">
+    <title>Visit List</title>
+</head>
+<body>
+    <h1>Visit List</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Visit ID</th>
+                <th>Consultation Date</th>
+                <th>Appointment Date</th>
+                <th>Visit Time</th>
+                <th>Patient ID</th>
+                <th>Doctor ID</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for visit in visits %}
+                <tr>
+                    <td>{{ visit.Visit_ID }}</td>
+                    <td>{{ visit.Consultation_Date }}</td>
+                    <td>{{ visit.Appointment_Date }}</td>
+                    <td>{{ visit.Visit_Time }}</td>
+                    <td>{{ visit.Patient.Patient_ID }}</td>
+                    <td>{{ visit.Doctor.Doctor_ID }}</td>
+                    <td>
+                        <a href="{% url 'update_visit' visit.Visit_ID %}" class="update-button">Update</a>
+                        <a href="{% url 'delete_visit' visit.Visit_ID %}" class="delete-button">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'add_visit' %}" class="add-button">Add Visit</a>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var updateButtons = document.getElementsByClassName("update-button");
+            for (var i = 0; i < updateButtons.length; i++) {
+                updateButtons[i].addEventListener("click", function(event) {
+                    event.preventDefault();
+                    window.location.href = this.getAttribute("href");
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'MediCare\css\styles.css'%}">
+    <title>Update Visit</title>
+</head>
+<body>
+    <h1>Update Visit</h1>
+    <form method="post" action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update Visit</button>
+    </form>
+    <a href="{% url 'visit_list' %}">Back to Visit List</a>
+</body>
+</html>

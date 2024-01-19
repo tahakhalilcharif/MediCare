@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block head %}
+    <title>{% block title %}My Clinic{% endblock %}</title>
+    {% endblock %}
+    <link rel="stylesheet" href="{% static 'MediCare/css/styles.css' %}">
+</head>
+<body>
+
+    <div class="sidebar">
+        <a href="{% url 'doctor_list' %}">Doctors List</a>
+    </div>
+
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+
+</body>
+</html>

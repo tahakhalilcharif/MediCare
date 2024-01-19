@@ -1,0 +1,12 @@
+# .gitignore
+
+env_project/
+Project/db.sqlite3
+Project/manage.py
+ClassDiagram.pdf
+DRF.pdf
+Support_TP1.pdf
+Support_TP3_TP4.pdf
+Support_TP5_TP6.pdf
+TP_SI2_3ISIL_SectionB.pdf
+TP_SI2_3ISIL_SectionB_fr.pdf

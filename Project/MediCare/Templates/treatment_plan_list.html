@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'MediCare\css\styles.css'%}">
+    <title>Treatment Plan List</title>
+</head>
+<body>
+    <h1>Treatment Plan List</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Plan ID</th>
+                <th>Diagnosis</th>
+                <th>Treatment Details</th>
+                <th>Medical Record ID</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for treatment_plan in treatment_plans %}
+                <tr>
+                    <td>{{ treatment_plan.Plan_ID }}</td>
+                    <td>{{ treatment_plan.Diagnosis }}</td>
+                    <td>{{ treatment_plan.Treatment_Details }}</td>
+                    <td>{{ treatment_plan.Medical_Record.Record_ID }}</td>
+                    <td>
+                        <a href="{% url 'update_treatment_plan' treatment_plan.Plan_ID %}" class="update-button">Update</a>
+                        <a href="{% url 'delete_treatment_plan' treatment_plan.Plan_ID %}" class="delete-button">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'add_treatment_plan' %}" class="add-button">Add Treatment Plan</a>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var updateButtons = document.getElementsByClassName("update-button");
+            for (var i = 0; updateButtons.length; i++) {
+                updateButtons[i].addEventListener("click", function(event) {
+                    event.preventDefault();
+                    window.location.href = this.getAttribute("href");
+                });
+            }
+        });
+    </script>
+</body>
+</html>

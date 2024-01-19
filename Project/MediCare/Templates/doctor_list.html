@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Doctor List{% endblock %}
+
+{% block content %}
+{% load static %}
+
+<h1>Doctor List</h1>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Doctor ID</th>
+            <th>NSS</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Specialisation</th>
+            <th>Phone Number</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for doctor in doctors %}
+            <tr>
+                <td>{{ doctor.Doctor_ID }}</td>
+                <td>{{ doctor.NSS }}</td>
+                <td>{{ doctor.First_Name }}</td>
+                <td>{{ doctor.Last_Name }}</td>
+                <td>{{ doctor.Specialisation }}</td>
+                <td>{{ doctor.Phone_Number }}</td>
+                <td>{{ doctor.Email }}</td>
+                <td>{{ doctor.Address }}</td>
+                <td>
+                    <a href="{% url 'update_doctor' doctor.Doctor_ID %}" class="update-button">Update</a>
+                    <a href="{% url 'delete_doctor' doctor.Doctor_ID %}" class="delete-button">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'add_doctor' %}" class="add-button">Add Doctor</a>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var updateButtons = document.getElementsByClassName("update-button");
+        for (var i = 0; i < updateButtons.length; i++) {
+            updateButtons[i].addEventListener("click", function(event) {
+                event.preventDefault();
+                window.location.href = this.getAttribute("href");
+            });
+        }
+    });
+</script>
+{% endblock %}
+

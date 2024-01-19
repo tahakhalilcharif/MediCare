@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'MediCare\css\styles.css'%}">
+    <title>Patient List</title>
+</head>
+<body>
+    <h1>Patient List</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Patient ID</th>
+                <th>NSS</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Phone Number</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Actions</th>
+                <th>Medical Record</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for patient in patients %}
+                <tr>
+                    <td>{{ patient.Patient_ID }}</td>
+                    <td>{{ patient.NSS }}</td>
+                    <td>{{ patient.First_Name }}</td>
+                    <td>{{ patient.Last_Name }}</td>
+                    <td>{{ patient.Phone_Number }}</td>
+                    <td>{{ patient.Email }}</td>
+                    <td>{{ patient.Address }}</td>
+                    <td>
+                        <a href="{% url 'update_patient' patient.Patient_ID %}" class="update-button">Update</a>
+                        <a href="{% url 'delete_patient' patient.Patient_ID %}" class="delete-button">Delete</a>
+                    </td>
+                    <td><a href="{% url 'patient_medical_record' patient.Patient_ID %}">View Medical Record</a></td>
+                    
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'add_patient' %}" class="add-button">Add Patient</a>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var updateButtons = document.getElementsByClassName("update-button");
+            for (var i = 0; i < updateButtons.length; i++) {
+                updateButtons[i].addEventListener("click", function(event) {
+                    event.preventDefault();
+                    window.location.href = this.getAttribute("href");
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+
