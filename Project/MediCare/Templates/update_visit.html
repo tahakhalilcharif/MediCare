@@ -1,14 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}update visit{% endblock %}
+
+{% block content %}
 {% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'MediCare\css\styles.css'%}">
+    <link rel="stylesheet" href="{% static 'MediCare\css\index.css'%}">
     <title>Update Visit</title>
 </head>
 <body>
-    <h1>Update Visit</h1>
+    <h1 class="screen-title">Update Visit</h1>
     <form method="post" action="">
         {% csrf_token %}
         {{ form.as_p }}
@@ -17,3 +22,4 @@
     <a href="{% url 'visit_list' %}">Back to Visit List</a>
 </body>
 </html>
+{% endblock %}

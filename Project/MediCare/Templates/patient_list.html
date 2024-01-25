@@ -1,16 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Patient List{% endblock %}
+
+{% block content %}
 {% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'MediCare\css\styles.css'%}">
+    <link rel="stylesheet" href="{% static 'MediCare\css\index.css'%}">
     <title>Patient List</title>
 </head>
 <body>
-    <h1>Patient List</h1>
-    <table border="1">
-        <thead>
+    <h1 class="screen-title">Patient List</h1>
+    <div class="main-content">
+        <table class="table-info">
+        <thead >
             <tr>
                 <th>Patient ID</th>
                 <th>NSS</th>
@@ -33,18 +39,18 @@
                     <td>{{ patient.Phone_Number }}</td>
                     <td>{{ patient.Email }}</td>
                     <td>{{ patient.Address }}</td>
-                    <td>
+                    <td class="actions">
                         <a href="{% url 'update_patient' patient.Patient_ID %}" class="update-button">Update</a>
                         <a href="{% url 'delete_patient' patient.Patient_ID %}" class="delete-button">Delete</a>
                     </td>
-                    <td><a href="{% url 'patient_medical_record' patient.Patient_ID %}">View Medical Record</a></td>
+                    <td><a href="{% url 'patient_medical_record' patient.Patient_ID %}" id="view-med-rec">View Medical Record</a></td>
                     
                 </tr>
             {% endfor %}
         </tbody>
-    </table>
-    <a href="{% url 'add_patient' %}" class="add-button">Add Patient</a>
-
+        </table>
+        <a href="{% url 'add_patient' %}" class="add-button">Add Patient</a>
+    </div>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var updateButtons = document.getElementsByClassName("update-button");
@@ -58,4 +64,6 @@
     </script>
 </body>
 </html>
+{% endblock %}
+
 

@@ -31,6 +31,7 @@ class Visit(models.Model):
 class MedicalRecord(models.Model):
     Record_ID = models.AutoField(primary_key=True)
     Patient = models.OneToOneField(Patient, on_delete=models.CASCADE)
+    Visits = models.ManyToManyField('Visit' , related_name = 'medical_records')
 
 class TreatmentPlan(models.Model):
     Plan_ID = models.AutoField(primary_key=True)

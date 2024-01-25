@@ -3,6 +3,11 @@
 env_project/
 Project/db.sqlite3
 Project/manage.py
+*.pyc
+__pycache__/
+*.log
+*.sql
+
 ClassDiagram.pdf
 DRF.pdf
 Support_TP1.pdf

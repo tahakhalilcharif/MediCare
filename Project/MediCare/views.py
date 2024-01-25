@@ -185,6 +185,25 @@ def delete_medical_record(request, medical_record_id):
     medical_record.delete()
     return redirect('medical_record_list')
 
+#view to fetch medical record for a specific patient
+def patient_medical_record(request, patient_id):
+    patient = get_object_or_404(Patient, Patient_ID=patient_id)
+    medical_record, created = MedicalRecord.objects.get_or_create(Patient=patient)
+
+    medical_record.Visits.set(Visit.objects.filter(Patient=patient))
+    
+    for visit in medical_record.Visits.all():
+        visit.treatment_plan = TreatmentPlan.objects.filter(visit=visit).first()
+        
+        if visit.treatment_plan:
+            visit.treatment_plan.prescription = Prescription.objects.filter(Treatment_Plan=visit.treatment_plan).first()
+
+    context = {
+        'patient': patient,
+        'medical_record': medical_record,
+    }
+
+    return render(request, 'patient_medical_record.html', context)
 
 #Treatment plan view accesible by admin and doctors
 def treatment_plan_list(request):
@@ -275,20 +294,3 @@ def delete_prescription(request, prescription_id):
     prescription = get_object_or_404(Prescription, pk=prescription_id)
     prescription.delete()
     return redirect('prescription_list')
-
-def patient_medical_record(request, patient_id):
-    patient = get_object_or_404(Patient, Patient_ID=patient_id)
-    medical_records = MedicalRecord.objects.filter(Patient=patient)
-    
-    for record in medical_records:
-        record.treatment_plans = TreatmentPlan.objects.filter(Medical_Record=record)
-        for plan in record.treatment_plans:
-            plan.prescription = Prescription.objects.filter(Treatment_Plan=plan).first()
-            plan.visit = Visit.objects.filter(Treatment_Plan=plan).first()
-
-    context = {
-        'patient': patient,
-        'medical_records': medical_records,
-    }
-
-    return render(request, 'patient_medical_record.html', context)

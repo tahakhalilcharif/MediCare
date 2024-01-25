@@ -1,19 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}medical record list{% endblock %}
+
+{% block content %}
 {% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'MediCare\css\styles.css'%}">
+    <link rel="stylesheet" href="{% static 'MediCare\css\index.css'%}">
     <title>Medical Record List</title>
 </head>
 <body>
-    <h1>Medical Record List</h1>
-    <table border="1">
+    <h1 class="screen-title">Medical Record List</h1>
+    <div class="main-content">
+    <table class="table-info">
         <thead>
             <tr>
                 <th>Record ID</th>
-                <th>Patient ID</th>
+                <th>Patient </th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -21,8 +27,10 @@
             {% for medical_record in medical_records %}
                 <tr>
                     <td>{{ medical_record.Record_ID }}</td>
-                    <td>{{ medical_record.Patient.Patient_ID }}</td>
-                    <td>
+                    <td>{{ medical_record.Patient.Last_Name }}
+                        {{ medical_record.Patient.First_Name }}
+                    </td>
+                    <td class="actions">
                         <a href="{% url 'update_medical_record' medical_record.Record_ID %}" class="update-button">Update</a>
                         <a href="{% url 'delete_medical_record' medical_record.Record_ID %}" class="delete-button">Delete</a>
                     </td>
@@ -31,7 +39,7 @@
         </tbody>
     </table>
     <a href="{% url 'add_medical_record' %}" class="add-button">Add Medical Record</a>
-
+    </div>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var updateButtons = document.getElementsByClassName("update-button");
@@ -45,3 +53,4 @@
     </script>
 </body>
 </html>
+{% endblock %}

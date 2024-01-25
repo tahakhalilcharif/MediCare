@@ -1,19 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}update prescreption{% endblock %}
+
+{% block content %}
 {% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'MediCare\css\styles.css'%}">
+    <link rel="stylesheet" href="{% static 'MediCare\css\index.css'%}">
     <title>Update Prescription</title>
 </head>
 <body>
-    <h1>Update Prescription</h1>
+    <h1 class="screen-title">Update Prescription</h1>
     <form method="post" action="">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Update Prescription</button>
     </form>
-    <a href="{% url 'prescription_list' %}">Back to Prescription List</a>
+    <a href="{% url 'prescription_list' %}" class="back-button">Back to Prescription List</a>
 </body>
 </html>
+{% endblock %}

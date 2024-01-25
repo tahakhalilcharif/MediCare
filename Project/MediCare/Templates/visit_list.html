@@ -1,15 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}visit list{% endblock %}
+
+{% block content %}
 {% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'MediCare\css\styles.css'%}">
+    <link rel="stylesheet" href="{% static 'MediCare\css\index.css'%}">
     <title>Visit List</title>
 </head>
 <body>
-    <h1>Visit List</h1>
-    <table border="1">
+    <h1 class="screen-title">Visit List</h1>
+    <div class="main-content">
+    <table class="table-info">
         <thead>
             <tr>
                 <th>Visit ID</th>
@@ -17,7 +23,9 @@
                 <th>Appointment Date</th>
                 <th>Visit Time</th>
                 <th>Patient ID</th>
+                <th>Patient Name</th>
                 <th>Doctor ID</th>
+                <th>Doctor Name</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -29,8 +37,16 @@
                     <td>{{ visit.Appointment_Date }}</td>
                     <td>{{ visit.Visit_Time }}</td>
                     <td>{{ visit.Patient.Patient_ID }}</td>
+                    <td>
+                        {{ visit.Patient.Last_Name }}
+                        {{ visit.Patient.First_Name }}
+                    </td>
                     <td>{{ visit.Doctor.Doctor_ID }}</td>
                     <td>
+                        {{ visit.Doctor.Last_Name }}
+                        {{ visit.Doctor.First_Name }}
+                    </td>
+                    <td class="actions">
                         <a href="{% url 'update_visit' visit.Visit_ID %}" class="update-button">Update</a>
                         <a href="{% url 'delete_visit' visit.Visit_ID %}" class="delete-button">Delete</a>
                     </td>
@@ -39,7 +55,7 @@
         </tbody>
     </table>
     <a href="{% url 'add_visit' %}" class="add-button">Add Visit</a>
-
+    </div>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var updateButtons = document.getElementsByClassName("update-button");
@@ -53,3 +69,4 @@
     </script>
 </body>
 </html>
+{% endblock %}

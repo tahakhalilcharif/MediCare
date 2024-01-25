@@ -1,0 +1,299 @@
+/* Base styles for the entire page */
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #F5F5F5;
+}
+
+/* Container for overall layout */
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+
+/* Sidebar */
+.sidebar {
+  width: 20%;
+  background-color: #363740;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  z-index: 1;
+}
+
+#logo{
+    font-size: 22px;
+    color: white;
+    text-align: center;
+    line-height: 80px;
+    user-select: none;
+}
+
+
+
+.sidebar-nav-item {
+ 
+  text-align: center;
+  line-height: 60px;
+  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: #A4A6B3;
+
+}
+
+.sidebar-nav-item:hover {
+  background-color: rgba(255,255,255,.1);
+}
+
+
+
+/* Main content area */
+.content {
+  margin-left: 20%;
+  padding: 1rem;
+}
+
+/*screeen title */
+.screen-title{
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #363740;
+    text-align: center;
+}
+
+.main-content{
+  position: relative;
+}
+
+/*tebles design */
+.table-info{
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    background-color: #FFFFFF;
+    padding: 5px;
+    font-size: 0.9em;
+    
+}
+
+.table-info thead tr{
+  text-align: left;
+  font-weight: bold;
+  background-color: #A4A6B3;
+  
+}
+
+.table-info th, .table-info td{
+  padding: 12px 15px;
+}
+
+.table-info tbody tr{
+  border-bottom: 1px solid #dddddd ;
+}
+
+.table-info tbody tr:nth-of-type(even){
+  background-color: #f3f3f3;
+}
+
+.table-info tbody tr:last-of-type{
+  border-bottom: 2px solid #A4A6B3;
+}
+
+.add-button{
+  background-color: #A4A6B3;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  text-decoration: none;
+  position: relative;
+  left: 40%;
+}
+
+.add-button:hover{
+  background-color: #363740;
+}
+
+.actions{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.update-button{
+  background-color: #28a745;
+  color: #fff;
+  border: 1px solid #20a13b;
+  border-radius: 5px;
+  padding: 10px 15px;
+  text-decoration: none;
+  margin-bottom: 5px;
+  width: 70%;
+  text-align: center;
+
+  
+}
+
+.update-button:hover {
+  background-color: #30b851;
+}
+
+.delete-button{
+  background-color: #dc3545;
+  color: #fff;
+  border: 1px solid #b92b3f;
+  border-radius: 5px;
+  padding: 10px 15px;
+  text-decoration: none;
+  width: 70%;
+  text-align: center;
+
+ 
+}
+
+.delete-button:hover {
+  background-color: #e24e58;
+}
+
+#view-med-rec{
+  background-color: #363740;
+  border: 1px solid #333;
+  border-radius: 5px;
+  padding: 5px 10px;
+  color: #eee;
+  font-weight: 500;
+  text-decoration: none;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  text-align: center;  
+}
+
+#view-med-rec:hover {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+
+.back-button{
+  background-color: #333;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  padding: 5px 10px;
+  color: #f5f5f5;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+
+}
+
+.back-button:hover {
+  background-color: #f2f2f2;
+  border-color: #ddd;
+  color: #333;
+}
+
+
+
+
+
+
+
+
+form {
+  background-color: #f5f5f5; /* Light gray background */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 50px 0;
+  width: 90%;
+  position: relative;
+}
+
+form label {
+  font-weight: 500; /* Slightly bolder text */
+  margin-bottom: 5px;
+  display: block;
+}
+
+/* General input styling */
+form input[type="text"],
+form input[type="email"] {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 5px 10px;
+  font-size: 16px;
+  width: 60%;
+}
+
+
+
+
+form input[type="email"] {
+  color: #2e89ff; /* Hint color for email */
+}
+
+form textarea {
+  resize: none; /* Disable textarea resize */
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 10px;
+  font-size: 16px;
+  width: 60%;
+  height: 60px; /* Adjust height as needed */
+}
+
+form select {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 5px 10px;
+  font-size: 16px;
+  width: 60%;
+  appearance: none;
+}
+
+
+form select:focus {
+  border: 1px solid #999;
+}
+
+/* Button styling */
+button[type="submit"] {
+  background-color: #28a745; /* Green button */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  position: relative;
+  left: 30%;
+}
+
+button[type="submit"]:hover {
+  background-color: #30b851; /* Slightly darker green on hover */
+}
+
+/* Optional hover effects for other elements */
+form label:hover {
+  color: #2e89ff; /* Underline on hover (optional) */
+  text-decoration: underline;
+}
+
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form select:focus {
+  outline: none; /* Remove focus outline */
+  border: 1px solid #999;
+}

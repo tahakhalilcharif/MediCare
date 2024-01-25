@@ -5,8 +5,9 @@
 {% block content %}
 {% load static %}
 
-<h1>Doctor List</h1>
-<table border="1">
+<h1 class="screen-title">Doctor List</h1>
+<div class="main-content">
+<table class="table-info">
     <thead>
         <tr>
             <th>Doctor ID</th>
@@ -31,7 +32,7 @@
                 <td>{{ doctor.Phone_Number }}</td>
                 <td>{{ doctor.Email }}</td>
                 <td>{{ doctor.Address }}</td>
-                <td>
+                <td class="actions">
                     <a href="{% url 'update_doctor' doctor.Doctor_ID %}" class="update-button">Update</a>
                     <a href="{% url 'delete_doctor' doctor.Doctor_ID %}" class="delete-button">Delete</a>
                 </td>
@@ -40,7 +41,7 @@
     </tbody>
 </table>
 <a href="{% url 'add_doctor' %}" class="add-button">Add Doctor</a>
-
+</diV>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         var updateButtons = document.getElementsByClassName("update-button");

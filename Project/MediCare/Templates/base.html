@@ -7,16 +7,28 @@
     {% block head %}
     <title>{% block title %}My Clinic{% endblock %}</title>
     {% endblock %}
-    <link rel="stylesheet" href="{% static 'MediCare/css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'MediCare/css/index.css' %}">
 </head>
 <body>
 
-    <div class="sidebar">
-        <a href="{% url 'doctor_list' %}">Doctors List</a>
-    </div>
+   
 
-    <div class="content">
-        {% block content %}{% endblock %}
+        <sidebar class="sidebar">
+                    <h1 id="logo">Medicare</h1>
+                    <a href="{% url 'doctor_list' %}" class="sidebar-nav-item">Doctors</a>
+                    <a href="{% url 'patient_list' %}" class="sidebar-nav-item">Patients</a>
+                    <a href="{% url 'visit_list' %}" class="sidebar-nav-item">Visits</a> 
+                    <a href="{% url 'medical_record_list' %}"  class="sidebar-nav-item">Medical Records</a>
+                    <a href="{% url 'treatment_plan_list' %}"  class="sidebar-nav-item">Treatment Plans</a>
+                    <a href="{% url 'prescription_list' %}"  class="sidebar-nav-item">Prescriptions</a>     
+        
+        </sidebar>
+
+
+
+         <main class="content">
+              {% block content %}{% endblock %}
+         </main>
     </div>
 
 </body>

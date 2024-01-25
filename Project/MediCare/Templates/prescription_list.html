@@ -1,15 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}prescreption list{% endblock %}
+
+{% block content %}
 {% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'MediCare\css\styles.css'%}">
+    <link rel="stylesheet" href="{% static 'MediCare\css\index.css'%}">
     <title>Prescription List</title>
 </head>
 <body>
-    <h1>Prescription List</h1>
-    <table border="1">
+    <h1 class="screen-title">Prescription List</h1>
+    <div class="main-content">
+    <table class="table-info">
         <thead>
             <tr>
                 <th>Prescription ID</th>
@@ -28,7 +34,7 @@
                     <td>{{ prescription.Dose }}</td>
                     <td>{{ prescription.Serial_Number }}</td>
                     <td>{{ prescription.Treatment_Plan.Plan_ID }}</td>
-                    <td>
+                    <td class="actions">
                         <a href="{% url 'update_prescription' prescription.Prescription_ID %}" class="update-button">Update</a>
                         <a href="{% url 'delete_prescription' prescription.Prescription_ID %}" class="delete-button">Delete</a>
                     </td>
@@ -37,7 +43,7 @@
         </tbody>
     </table>
     <a href="{% url 'add_prescription' %}" class="add-button">Add Prescription</a>
-
+</div>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var updateButtons = document.getElementsByClassName("update-button");
@@ -51,3 +57,4 @@
     </script>
 </body>
 </html>
+{% endblock %}
